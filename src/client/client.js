@@ -1,3 +1,6 @@
-// Start up point for the client side application
+import Home from './components/Home';
+import React from 'react';
+import ReactDom from 'react-dom';
 
-console.log('Hi there!')
+// Start up point for the client side application
+ReactDom.hydrate(<Home />, document.getElementById('root'))
