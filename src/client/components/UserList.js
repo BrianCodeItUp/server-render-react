@@ -28,4 +28,9 @@ const selector = (state) => {
 const actions = {
   fetchUsers
 }
+
+export const loadData = (store) => {
+  return store.dispatch(fetchUsers());
+}
+
 export default connect(selector, actions)(UserList);
