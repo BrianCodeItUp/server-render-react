@@ -29,8 +29,12 @@ const actions = {
   fetchUsers
 }
 
-export const loadData = (store) => {
+const loadData = (store) => {
   return store.dispatch(fetchUsers());
 }
 
-export default connect(selector, actions)(UserList);
+export default {
+  component: connect(selector, actions)(UserList),
+  loadData
+}
+
