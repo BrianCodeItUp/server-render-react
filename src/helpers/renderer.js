@@ -9,7 +9,7 @@ import serialize from 'serialize-javascript';
 export default (path, store, context) => {
   const content = renderToString(
     <Provider store={store}>
-      <StaticRouter location={path} content={context}>
+      <StaticRouter location={path} context={context}>
         <div>{renderRoutes(Routes)}</div>
       </StaticRouter>
     </Provider>

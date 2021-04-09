@@ -19,16 +19,28 @@ app.use(express.static('public'));
 app.get('*', (req, res) => {
   const store = createStore(req)
   
-  const promises = matchRoutes(Routes, req.path).map(({ route }) => { 
+  const promises = matchRoutes(Routes, req.path)
+    .map(({ route }) => { 
     return route.loadData ? route.loadData(store) : null
-  });
+    })
+    .map(promise => {
+      if (promise) {
+        return new Promise((resolve) => {
+          promise.then(resolve).catch(resolve)
+        })
+      }
+    });
 
   Promise.all(promises).then(() => {
-    const context = {
-      test: 'test'
-    }
+    const context = {}
     const content = renderer(req.path, store, context)
+
     console.log(context)
+    if (context.url) {
+      console.log(context)
+      return res.redirect(301, context.url)
+    }
+    
     if (context.notFound) {
       res.status(404)
     }
