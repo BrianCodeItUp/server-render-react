@@ -16,7 +16,9 @@ export default (path, store) => {
   );
   return `
     <html>
-      <head></head>
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.0.0/dist/css/materialize.min.css">
+      </head>
       <body>
         <div id="root">${content}</div>
         <script>
