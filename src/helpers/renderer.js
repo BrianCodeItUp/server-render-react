@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
 import React from 'react';
 import Routes from '../client/Routes'
@@ -14,9 +15,13 @@ export default (path, store, context) => {
       </StaticRouter>
     </Provider>
   );
+
+  const helmet = Helmet.renderStatic();
   return `
     <html>
       <head>
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@materializecss/materialize@1.0.0/dist/css/materialize.min.css">
       </head>
       <body>
